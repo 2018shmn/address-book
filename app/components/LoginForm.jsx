@@ -4,6 +4,7 @@ const LoginForm = ({onLogin, onSignup}) => {
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -23,28 +24,36 @@ const LoginForm = ({onLogin, onSignup}) => {
                 case 'auth/invalid-credential':
                 case 'auth/wrong-password':
                 case 'auth/user-not-found':
-                    alert('Invalid email or password');
+                    setError('Invalid email or password.');
                     break;
                 case 'auth/email-already-in-use':
-                    alert('Email is already in use');
+                    setError('Email is already in use.');
                     break;
                 case 'auth/weak-password':
-                    alert('Password should be at least 6 characters');
+                    setError('Password should be at least 6 characters.');
                     break;
                 case 'auth/invalid-email':
-                    alert('Invalid email address');
+                    setError('Invalid email address.');
                     break;
                 default:
-                    alert('An error occurred. Please try again.');
+                    setError('An error occurred.');
             }
         }
-        setIsLoading(false);
+        finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <div className="login-container">
             <div className ="login-form">
                 <h2>{isLogin ? 'Login' : 'Create Account'}</h2>
+
+                {error && (
+                    <div className="error">
+                        <h2>{error} Please try again. </h2>
+                    </div>
+                )}
 
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -61,13 +70,13 @@ const LoginForm = ({onLogin, onSignup}) => {
                         <input
                         type="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {setPassword(e.target.value); if(error) setError(null);}}
                         required/>
                     </div>
 
                     <button
                     type="submit"
-                    className="button-submit"
+                    className="button-form-submit"
                     disabled={isLoading}>
                         {isLoading ? 'Processing...' : isLogin ? 'Login' : 'Sign Up'}
                     </button>
@@ -75,8 +84,9 @@ const LoginForm = ({onLogin, onSignup}) => {
 
                 <div className = "form-switch">
                     <button 
+                    className="button-form-switch"
                     type="button"
-                    onClick={() => setIsLogin(!isLogin)}>
+                    onClick={() => {setIsLogin(!isLogin); setError(null)}}>
                         {isLogin ? 'Sign Up' : 'Login'}
                     </button>
                 </div>
