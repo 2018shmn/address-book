@@ -231,6 +231,15 @@ export default function Home() {
                     <Header user={user} onLogout={handleLogout} showFilters={showFilters} onToggleFilters={toggleFilters}/>
 
                     <div className="main-layout">
+
+                        <div className="contact-form">
+                            <ContactForm 
+                            contact={editContact}
+                            onSubmit={editContact ? updateContact : addContact}
+                            onCancel={() => setEditContact(null)}
+                            uploadImage={uploadImage}/>
+                        </div>
+
                         <div className="content-area">
                             <div className="filter-content">
                                 {showFilters && (
@@ -250,14 +259,6 @@ export default function Home() {
                                     onDelete={deleteContact}/>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div className="contact-form">
-                            <ContactForm 
-                            contact={editContact}
-                            onSubmit={editContact ? updateContact : addContact}
-                            onCancel={() => setEditContact(null)}
-                            uploadImage={uploadImage}/>
                         </div>
                     </div>
             </>
