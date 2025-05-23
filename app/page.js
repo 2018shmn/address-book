@@ -231,22 +231,28 @@ export default function Home() {
                     <Header user={user} onLogout={handleLogout} showFilters={showFilters} onToggleFilters={toggleFilters}/>
 
                     <div className="main-layout">
-                        {showFilters && (
-                            <div className="sidebar">
-                                <Filters 
-                                    filters={filters} 
-                                    onFilterChange={handleFilterChange} 
-                                    contacts={contacts}
-                                />
+                        <div className="content-area">
+                            <div className="filter-content">
+                                {showFilters && (
+                                    <div className="sidebar">
+                                        <Filters 
+                                            filters={filters} 
+                                            onFilterChange={handleFilterChange} 
+                                            contacts={contacts}
+                                        />
+                                    </div>
+                                )}
+
+                                <div className={`main-content ${showFilters ? 'with-sidebar' : ''}`}>
+                                    <ContactList 
+                                    contacts={displayContacts}
+                                    onEdit={setEditContact}
+                                    onDelete={deleteContact}/>
+                                </div>
                             </div>
-                        )}
-
-                        <div className={`main-content ${showFilters ? 'with-sidebar' : ''}`}>
-                            <ContactList 
-                            contacts={displayContacts}
-                            onEdit={setEditContact}
-                            onDelete={deleteContact}/>
-
+                        </div>
+                        
+                        <div className="contact-form">
                             <ContactForm 
                             contact={editContact}
                             onSubmit={editContact ? updateContact : addContact}

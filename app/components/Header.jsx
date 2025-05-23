@@ -2,8 +2,8 @@
 const Header = ({user, onLogout, showFilters, onToggleFilters}) => {
     return (
         <header className="app-header">
-            <div className="header-main">
-                <div className="header-content">
+            <div className="header-content">
+                <div className="header-top-row">
                     <div className="header-left">
                         <button 
                             className={`button-filter ${showFilters ? 'active' : ''}`}
@@ -14,14 +14,18 @@ const Header = ({user, onLogout, showFilters, onToggleFilters}) => {
                             </svg>
                             {showFilters ? 'Hide Filters' : 'Show Filters'}
                         </button>
-                        <h1>Address Book</h1>
+                        <h1 className="desktop-title">Address Book</h1>
                     </div>
+
                     <div className="user-info">
                         <span>{user.email}</span>
                         <button 
                         className="button-logout"
                         onClick={onLogout}>Logout</button>
                     </div>
+                </div>
+                <div className="header-bottom-row">
+                    <h1>Address Book</h1>
                 </div>
             </div>
         </header>
