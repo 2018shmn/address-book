@@ -168,7 +168,7 @@ export default function Home() {
                         return code && filters.areaCodes.includes(code[1]);
                     }
                 }
-            })
+            });
         }
 
         filtered.sort((a,b) => {
@@ -178,11 +178,16 @@ export default function Home() {
                 return filters.sortDirection === 'desc' ? dateB - dateA : dateA - dateB;
             }
             else if (filters.sortBy === 'name') {
-                const nameA = a.name?.toLowerCase();
-                const nameB = b.name?.toLowerCase();
-                return filters.sortDirection === 'desc' ? nameB.localeCompare(nameA)
-                :nameA.localeCompare(nameB);
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+                if (filters.sortDirection == 'desc') {
+                    return nameB.localeCompare(nameA);
+                }
+                else {
+                    return nameA.localeCompare(nameB);
+                }
             }
+            return 0;
         });
 
         setFilteredContacts(filtered);
@@ -216,7 +221,7 @@ export default function Home() {
 
     console.log(`Contacts length: ${contacts.length}`);
 
-    const displayContacts = filters.tags.length > 0 || filters.areaCodes.length > 0 ? filteredContacts : contacts;
+    const displayContacts = filteredContacts;
     console.log(`display contacts length: ${displayContacts.length}`)
 
     if (isLoading) {

@@ -76,16 +76,19 @@ const Filters = ({filters, onFilterChange, contacts}) => {
 
     const handleSortChange = (sortBy) => {
         if (sortBy === filters.sortBy) {
+            const newDirection = filters.sortDirection === 'asc' ? 'desc' : 'asc';
             onFilterChange({
                 ...filters,
-                sortDirection: filters.sortDirection === 'asc' ? 'desc' : 'asc'
+                sortDirection: newDirection
             });
+            console.log(filters.sortDirection);
         }
         else {
+            const defaultDirection = sortBy === 'dateAdded' ? 'desc' : 'asc';
             onFilterChange({
                 ...filters, 
                 sortBy,
-                sortDirection: sortBy === 'dateAdded' ? 'desc' : 'asc'
+                sortDirection: defaultDirection
             });
         }
     }
@@ -131,7 +134,8 @@ const Filters = ({filters, onFilterChange, contacts}) => {
                         type="button"
                         className={`sort-option ${filters.sortBy === 'dateAdded' ? 'selected' : ''}`}
                         onClick={() => handleSortChange('dateAdded')}>
-                            Date Added {filters.sortBy === 'dateAdded'}                         
+                            Date Added {filters.sortBy === 'dateAdded' 
+                            ? (filters.sortDirection === 'desc' ? '↓' : '↑'): ''}                         
                         </button>
                     </div>
                     <div className="sort-options">
@@ -139,7 +143,7 @@ const Filters = ({filters, onFilterChange, contacts}) => {
                         type="button"
                         className={`sort-option ${filters.sortBy === 'name' ? 'selected' : ''}`}
                         onClick={() => handleSortChange('name')}>
-                            Name {filters.sortBy === 'name'}
+                            Name {filters.sortBy === 'name' ? (filters.sortDirection === 'desc' ? '(Z-A)' : "(A-Z)") : ''}
                         </button>
                     </div>
                 </div>
