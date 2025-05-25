@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Contact Address Book
 
-## Getting Started
+A full-stack React application built with Firebase, featuring comprehensive contact management and advanced filtering. Deployed on Vercel: [link](address-book-virid-nine.vercel.app).
 
-First, run the development server:
+### Core Functionality
+- Contact Management: Create, edit, delete contacts with comprehensive information (personal, professional, social media)
+- Advanced Filtering: Filter by tags, area codes, and sort by date/name in descending/ascending order
+- Image Upload: Profile pictures via Firebase Storage
+- User Authentication: Secure login/signup with Firebase Auth
+- Real-time Sync: Live updates across sessions
+
+### Enhanced User Experience
+
+- Multi-tag: Categorize contacts (business, social, family, etc.)
+- Social Media: Auto-format URLs for LinkedIn, Instagram, Facebook, X
+- Mobile-Responsive: Optimized for all device sizes
+
+### Tech Stack
+
+Frontend: React, CSS, JavaScript
+
+Backend: Firebase (Authentication, Firestore, Storage)
+
+Deployment: Vercel
+
+
+### Setup
+
+### Prerequisites
+
+- Node.js (v14+) and npm/yarn
+- Firebase project with Auth, Firestore, and Storage enabled
+
+### Clone and install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [your-repo-url]
+cd contact-management-app
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Configure Firebase
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Create firebase.js:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```javascript
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
-## Learn More
+const firebaseConfig = {
+  // Your Firebase config
+};
 
-To learn more about Next.js, take a look at the following resources:
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run locally
+`bashnpm start`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Project Structure
+```
+├── components/
+│   ├── ContactForm.js      # Add/edit contact forms
+│   ├── ContactList.js      # Contact display + management
+│   ├── Filters.js          # Filtering + sorting
+│   ├── Header.js           # App header
+│   └── LoginForm.js        # Authentication
+├── icons/                  # for contact forms
+│   ├── email.jpg
+│   ├── facebook.png
+│   ├── instagram.png
+│   ├── linkedin.png
+│   ├── location.png
+│   ├── phone.png
+│   └── x.jpg
+├── styles/globals.css      # Responsive styling
+├── firebase.js             # Firebase setup
+└── page.js                 # Main app component
+```
