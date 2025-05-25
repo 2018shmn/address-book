@@ -66,8 +66,6 @@ export default function Home() {
     const fetchContacts = async() => {
         if(!user) return;
 
-        console.log(`user id: ${user.uid}`);
-
         try {
             setIsLoading(true);
             const q = query(
@@ -159,14 +157,12 @@ export default function Home() {
 
         if (filters.areaCodes.length > 0) {
             filtered = filtered.filter(contact => {
-                console.log(`numbers: ${contact.phone}`);
                 if (contact.phone) {
                     let code = contact.phone.match(/\((\d{3})\)/);
                     if (!code) {
                         code = contact.phone.match(/^(\d{3})/);
                     }
                     if (code && code[1]) {
-                        console.log(`area codes: ${code[1]}`);
                         return code && filters.areaCodes.includes(code[1]);
                     }
                 }
@@ -240,11 +236,6 @@ export default function Home() {
         }
     }
 
-    console.log(`Contacts length: ${contacts.length}`);
-
-    const displayContacts = filteredContacts;
-    console.log(`display contacts length: ${displayContacts.length}`)
-
     if (isLoading) {
         return <div className="loading">Loading...</div>
     }
@@ -289,7 +280,7 @@ export default function Home() {
 
                                 <div className={`main-content ${showFilters ? 'with-sidebar' : ''}`}>
                                     <ContactList 
-                                    contacts={displayContacts}
+                                    contacts={filteredContacts}
                                     onEdit={handleEditContact}
                                     onDelete={deleteContact}
                                     editContactID={editContactID}

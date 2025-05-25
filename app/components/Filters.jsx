@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react';
 
 const Filters = ({filters, onFilterChange, contacts}) => {
     //by tags
-    const availTags = ['business', 'social', 'family'];
+    const availTags = ['business', 'social', 'family', 'colleague', 'client', 'friend'];
     const [selectedTags, setSelectedTags] = useState([]);
     const [availAreaCodes, setAvailableAreaCodes] = useState([]);
     const [selectedCodes, setSelectedCodes] = useState([]);
@@ -81,7 +81,6 @@ const Filters = ({filters, onFilterChange, contacts}) => {
                 ...filters,
                 sortDirection: newDirection
             });
-            console.log(filters.sortDirection);
         }
         else {
             const defaultDirection = sortBy === 'dateAdded' ? 'desc' : 'asc';
@@ -149,7 +148,7 @@ const Filters = ({filters, onFilterChange, contacts}) => {
                 </div>
 
                 <button 
-                className="red-button" 
+                className="button-clear" 
                 onClick={clearFilters}>
                      Clear Filters
                 </button>

@@ -248,6 +248,27 @@ const ContactForm = ({contact, onSubmit, onCancel, uploadImage}) => {
                 </div>
             </div>
 
+            <div className="form-section">
+                <h3> Other</h3>
+                <div className="form-group">
+                    <label htmlFor="birthday">Birthday</label>
+                    <input
+                    type="text"
+                    name="birthday"
+                    value={data.birthday}
+                    onChange={handleChange}/>
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="notes">Notes</label>
+                    <input
+                    type="text"
+                    name="notes"
+                    value={data.notes}
+                    onChange={handleChange}/>
+                </div>
+            </div>
+
             <div className="form-actions">
                 {isEditMode && (<button
                 type="button"

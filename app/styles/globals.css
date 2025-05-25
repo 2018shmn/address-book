@@ -1,26 +1,28 @@
 :root {
-  --primary: #4a6fa5;
-  --primary-transparent: rgba(74, 111, 165, 0.7);
+  --primary: #6366f1;
+  --primary-hover: rgba(100, 100, 240, 0.7);
   --secondary: #e96d63;
-  --light: #f9f9f9;
-  --dark: #333;
-  --gray: #ddd;
-  --gray-dark: #888;
-  --delete-color: #dc3545;
-  --radius: 6px;
-  --shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  --light: #fafafa;
+  --dark: #1f2937;
+  --gray: #e5e7eb;
+  --gray-dark: #6b7280;
+  --delete-color: #ef4444;
+  --radius: 12px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
 }
 
 body {
-  font-family: 'Open Sans', Verdana, sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: var(--light);
   color: var(--dark);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 /* App/Login */
 .contact-form {
   width: 100%;
-  padding: 20px;
+  padding: 24px;
   background-color: white;
   box-shadow: var(--shadow);
   border-radius: var(--radius);
@@ -29,7 +31,7 @@ body {
   box-sizing: border-box; 
 }
 
-.app-container, .login-container {
+.app-container {
   display: flex;
   justify-content: center;
   min-height: 100vh;
@@ -37,10 +39,28 @@ body {
   width: 100%;
 }
 
-.app-content, .login-form {
+.app-content {
   width: 100%;
   max-width: 1200px;
-  padding: 30px;
+  padding: 32px;
+  background-color: white;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 1000px;
+  padding: 32px;
   background-color: white;
   box-shadow: var(--shadow);
   border-radius: var(--radius);
@@ -51,7 +71,7 @@ body {
   flex-direction: column;
   min-height: calc(100vh - 80px);
   width:100%;
-  gap: 20px;
+  gap: 24px;
 }
 
 .content-area {
@@ -69,11 +89,12 @@ body {
 .sidebar {
   width: 300px;
   background-color: var(--gray);
-  padding: 20px;
+  padding: 24px;
   overflow-y: auto;
   flex-shrink: 0;
   color: white;
   display: block;
+  border-radius: var(--radius);
 }
 
 .main-content {
@@ -90,24 +111,29 @@ body {
 .login-form h2 {
   margin-bottom: 20px;
   text-align: center;
+  font-weight: 600;
+  font-size: 1.9rem;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+  text-transform: uppercase;
 }
 
 .form-group input, 
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid var(--gray);
+  padding: 14px 16px;
+  border: 2px solid var(--gray);
   border-radius: var(--radius);
   font-size: 1rem;
   box-sizing: border-box; 
@@ -140,7 +166,7 @@ body {
 
 /*Header*/
 .app-header {
-  padding: 15px 25px;
+  padding: 20px 32px;
   background-color: var(--primary);
   color: white;
 }
@@ -163,13 +189,13 @@ body {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
 .header-content.column-layout {
   flex-direction: row;
   align-items: flex-start;
-  gap: 30px;
+  gap: 32px;
   padding: 20px 25px;
 }
 
@@ -190,26 +216,28 @@ body {
 
 /* Buttons */
 .button {
-  border: 1px solid white;
-  padding: 8px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 20px;
   border-radius: var(--radius);
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
 }
 
 .button-form-submit {
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 16px;
+  padding: 16px 24px;
+  font-size: 0.875rem;
   background-color: var(--primary);
   color: white;
   border: none;
+  border-radius: var(--radius);
 }
 
 .button-form-submit:hover {
-  background-color: var(--primary-transparent);
+  background-color: var(--primary-hover);
 }
 
 .button-form-submit:disabled {
@@ -218,48 +246,52 @@ body {
 }
 
 .button-form-switch {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 0.875rem;
   border: none;
   width: 100%;
   color: var(--primary);
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--radius);
 }
 
 .button-form-switch:hover {
-  background-color: var(--primary-transparent);
+  background: var(--primary-transparent);
 }
 
 .button-filter {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
 }
 
 .button-filter:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
 }
 
 .button-filter.active {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: var(--primary, #007bff);
-    border-color: white;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary, #007bff);
+  border-color: white;
+  font-weight: 600;
 }
 
 .button-logout {
   background-color: transparent;
   color: white;
+  padding: 6px 8px;
+  border-radius: var(--radius);
 }
 
 .button-logout:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .button-add {
@@ -269,31 +301,33 @@ body {
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
+  padding: 10px 15px;
+  border-radius: var(--radius);
 }
 
 .button-add:hover {
-  background-color: var(--primary-transparent);
+  background-color: var(--primary-hover);
 }
 
 .button-toggle {
   background-color: var(--primary);
   color: white;
   border: none;
-  transition: background-color 0.2s;
-  margin-top: 10px;
+  transition: 0.3s;
 }
 
 .button-toggle:hover {
-  background-color: var(--primary-transparent);
+  background-color: var(--primary-hover);
 }
 
 .cancel-button, .save-button {
   padding: 10px 20px;
   border-radius: var(--radius);
-  font-size: 1rem;
+  font-size: 0.875rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: 0.2s;
   border: none;
+  padding: 10px;
 }
 
 .cancel-button {
@@ -312,7 +346,7 @@ body {
 }
 
 .save-button:hover {
-  background-color: var(--primary-transparent);
+  background-color: var(--primary-hover);
 }
 
 .save-button:disabled {
@@ -324,8 +358,7 @@ body {
   background-color: var(--secondary);
   color: white;
   border: none;
-  transition: background-color 0.2s;
-  margin-top: 10px;
+  transition: 0.3s;
 }
 
 .button-red:hover {
@@ -355,6 +388,12 @@ body {
   color: white;
   border-color: var(--primary);
   transform: scale(1.05);
+}
+
+.button-clear {
+  background-color: var(--light);
+  padding: 10px 20px;
+  border-radius: var(--radius);
 }
 
 /*Contact List*/
