@@ -603,6 +603,13 @@ body {
   color: var(--delete-color);
 }
 
+.inline-edit-form {
+  border: 2px var(--primary);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 10px;
+}
+
 /* Filters */ 
 .filters-container {
   padding: 0;

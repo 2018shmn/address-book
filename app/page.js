@@ -25,8 +25,9 @@ import Filters from './components/Filters'
 export default function Home() {
     const [user, setUser] = useState(null);
     const [contacts, setContacts] = useState([]);
-    const [editContact, setEditContact] = useState(null);
+    const [editContactID, setEditContactID] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [showAddForm, setShowAddForm] = useState(false); 
     const [showFilters, setShowFilters] = useState(false);
     const [filters, setFilters] = useState({
         tags: [],
@@ -95,6 +96,7 @@ export default function Home() {
                 collection(db, `users/${user.uid}/contacts`), 
                 {...contactData, createdAt: serverTimestamp()});
             fetchContacts();
+            setShowAddForm(false);
             return contact.id;
         }
         catch(error) {
@@ -108,7 +110,7 @@ export default function Home() {
         try {
             await updateDoc(doc(db, `users/${user.uid}/contacts`, id), data);
             fetchContacts();
-            setEditContact(null);
+            setEditContactID(null);
         }
         catch(error) {
             console.error("Error updating contact:", error);
@@ -197,6 +199,25 @@ export default function Home() {
         setFilters({...filters, ...newFilters});
     };
 
+    const handleEditContact = (contact) => {
+        setEditContactID(contact.id);
+    }
+
+    const toggleAddForm = () => {
+        setShowAddForm(prev => !prev);
+        if (!showAddForm) {
+            setEditContactID(null);
+        }
+    }
+
+    const handleCancelAdd = () => {
+        setShowAddForm(false);
+    }
+
+    const handleCancelEdit = () => {
+        setEditContactID(null);
+    }
+
     const toggleFilters = () => {
         setShowFilters(prev => !prev);
     }
@@ -234,15 +255,24 @@ export default function Home() {
             {user ? (
                 <>
                     <Header user={user} onLogout={handleLogout} showFilters={showFilters} onToggleFilters={toggleFilters}/>
-
+                
                     <div className="main-layout">
+                        <div className="contact-form-container">
+                            <button 
+                                type="button"
+                                className="button-add"
+                                onClick={toggleAddForm}>
+                                    {showAddForm ? 'Cancel' : 'Add New Contact'}
+                            </button>
 
-                        <div className="contact-form">
-                            <ContactForm 
-                            contact={editContact}
-                            onSubmit={editContact ? updateContact : addContact}
-                            onCancel={() => setEditContact(null)}
-                            uploadImage={uploadImage}/>
+                            {showAddForm && (
+                                <div className="contact-form">
+                                <ContactForm 
+                                contact={null}
+                                onSubmit={addContact}
+                                onCancel={handleCancelAdd}
+                                uploadImage={uploadImage}/>
+                            </div>)}
                         </div>
 
                         <div className="content-area">
@@ -260,8 +290,12 @@ export default function Home() {
                                 <div className={`main-content ${showFilters ? 'with-sidebar' : ''}`}>
                                     <ContactList 
                                     contacts={displayContacts}
-                                    onEdit={setEditContact}
-                                    onDelete={deleteContact}/>
+                                    onEdit={handleEditContact}
+                                    onDelete={deleteContact}
+                                    editContactID={editContactID}
+                                    onCancelEdit={handleCancelEdit}
+                                    onSubmit={updateContact}
+                                    uploadImage={uploadImage}/>
                                 </div>
                             </div>
                         </div>
