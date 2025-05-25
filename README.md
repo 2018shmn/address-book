@@ -60,7 +60,9 @@ export const storage = getStorage(app);
 ```
 
 ### Run locally
-`bashnpm start`
+```bash
+npm run dev
+```
 
 ### Project Structure
 ```
