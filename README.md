@@ -79,6 +79,5 @@ export const storage = getStorage(app);
 │   ├── phone.png
 │   └── x.jpg
 ├── styles/globals.css      # Responsive styling
-├── firebase.js             # Firebase setup
 └── page.js                 # Main app component
 ```
