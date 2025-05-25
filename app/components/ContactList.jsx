@@ -51,7 +51,8 @@ const ContactList = ({ contacts, onEdit, onDelete, editContactID,
                                         {contact.email && (
                                             <div className="contact-method">
                                                 <div className="icon-email"></div>
-                                                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                                                <span>: </span>
+                                                <a href={`mailto:${contact.email}`}> {contact.email}</a>
                                             </div>
                                         )}
                                         {contact.address && (

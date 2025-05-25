@@ -174,7 +174,7 @@ const ContactForm = ({contact, onSubmit, onCancel, uploadImage}) => {
                     required/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="address">Home Address</label>
+                    <label htmlFor="address">Location / Home Address</label>
                     <input
                     type="text"
                     name="address"
