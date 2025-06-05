@@ -242,7 +242,7 @@ export default function Home() {
 
     return (
       <div className="app-container">
-        <div className="app-content">
+        <div className={user ? "app-content" : "app-content-login"}>
             {user ? (
                 <>
                     <Header user={user} onLogout={handleLogout} showFilters={showFilters} onToggleFilters={toggleFilters}/>

@@ -23,8 +23,6 @@ const ContactForm = ({contact, onSubmit, onCancel, uploadImage}) => {
     const [isLoading, setIsLoading] = useState(false);
     const availTags = ['business', 'social', 'family', 'colleague', 'client', 'friend'];
 
-    const isEditMode = contact !== null;
-
     useEffect(() => {
         if (contact) {
             setData({
@@ -270,7 +268,7 @@ const ContactForm = ({contact, onSubmit, onCancel, uploadImage}) => {
             </div>
 
             <div className="form-actions">
-                {isEditMode && (<button
+                {(<button
                 type="button"
                 className="cancel-button"
                 onClick={onCancel}>
