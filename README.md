@@ -35,7 +35,7 @@ Deployment: Vercel
 
 ```bash
 git clone [your-repo-url]
-cd contact-management-app
+cd address-book
 npm install
 ```
 
